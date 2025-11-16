@@ -1,0 +1,20 @@
+{
+  "name": "us100",
+  "version": "1.0.0",
+  "description": "Kaluma library for US-100 ultrasonic distance sensor",
+  "main": "us100.js",
+  "scripts": {
+    "test": "node --test --experimental-test-coverage",
+    "ch": "kaluma flash ./characterize.js --bundle --shell",
+    "shell": "screen /dev/cu.usbmodem1101 115200",
+    "ex1": "kaluma flash ./examples/distance.js --bundle --shell"
+  },
+  "author": "Alan Hamilton",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@kaluma/cli": "^1.4.0",
+    "@types/node": "^24.10.0"
+  }
+}
