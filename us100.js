@@ -10,10 +10,11 @@ function isValidTemperature(temperature) {
   return temperature >= -20 && temperature <= 70
 }
 
-const QUEUE_INTERVAL = 130;
-const DISTANCE_INTERVAL = 130;
+const QUEUE_INTERVAL = 20;
+const DISTANCE_INTERVAL = 150;
 const TEMPERATURE_INTERVAL = 5000;
-const COMMAND_TIMEOUT = 99;
+// const COMMAND_TIMEOUT = 99;
+const COMMAND_TIMEOUT = 1000;
 
 module.exports = class US100 extends EventEmitter {
   constructor(uart) {
