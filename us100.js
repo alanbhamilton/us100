@@ -50,10 +50,10 @@ module.exports = class US100 extends EventEmitter {
 
         if (command.id === Command.DISTANCE.id) {
           this.distance = command.getMeasurement();
-          this.emit('distance', this.distance);
+          this.emit('distance', this.distance, command.elapsed());
         } else if (command.id === Command.TEMPERATURE.id) {
           this.temperature = command.getMeasurement();
-          this.emit('temperature', this.temperature);
+          this.emit('temperature', this.temperature, command.elapsed());
         }
       }
     });
