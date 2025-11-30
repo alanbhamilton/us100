@@ -75,15 +75,15 @@ module.exports = class US100 extends EventEmitter {
     if (currentCommand.isActive()) return;  // wait for active command to finish or timeout
     currentCommand.transmit(this.uart, () => {
        console.log('command timeout');
+       this.commandQueue.dequeue();
+       this.requestTemperature(1);
       //  TODO: the distance reading after a timeout seems crazy, schedule a null reading
     })
 
     if (currentCommand.id === Command.DISTANCE && this.distanceCount === 0) {
-      clearInterval(this.distanceIntervalID);
-      this.distanceIntervalID = null;
+      this.stopDistance();
     } else if (currentCommand.id === Command.TEMPERATURE && this.temperatureCount === 0) {
-      clearInterval(this.temperatureIntervalID);
-      this.temperatureIntervalID = null;
+      this.stopTemperature();
     }
 
     if (this.distanceCount === 0 && this.temperatureCount === 0) {
