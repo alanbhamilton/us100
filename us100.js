@@ -117,6 +117,16 @@ module.exports = class US100 extends EventEmitter {
     }
   };
 
+  isActiveDistance() {
+    return this.distanceCount;
+  }
+
+  stopDistance() {
+    clearInterval(this.distanceIntervalID);
+    this.distanceIntervalID = null;
+    this.distanceCount = 0;
+  }
+
   temperatureScheduler() {
     if (this.temperatureCount > 0) {
       this.temperatureCount -= 1;
@@ -137,5 +147,15 @@ module.exports = class US100 extends EventEmitter {
         this.queueHandler();
       }, QUEUE_INTERVAL);
     }
-  };
+  }
+
+  isActiveTemperature() {
+    return this.temperatureCount;
+  }
+
+  stopTemperature() {
+    clearInterval(this.temperatureIntervalID);
+    this.temperatureIntervalID = null;
+    this.temperatureCount = 0;
+  }
 }
