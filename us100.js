@@ -30,6 +30,14 @@ module.exports = class US100 extends EventEmitter {
     this.temperatureCount = null
     this.temperatureIntervalID = null
 
+    // Some chips may have junk input bytes immediately after UART creation.
+    // Wait enough time before attaching a handler to uart 'data' event.
+    setTimeout(() => {
+      this.init();
+    }, 100)
+  }
+
+  init() {
     this.uart.on('data', (data) => {
       if (this.commandQueue.isEmpty()) {
         console.log('received uart data when no command active: ', data[0]);
